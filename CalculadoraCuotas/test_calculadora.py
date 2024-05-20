@@ -1,5 +1,5 @@
 import unittest
-from CalculadoraCuotas.calculadora_cuotas import calcular_cuota_mensual
+from CalculadoraCuotas.calculadora_cuotas import calcular_cuota_mensual, obtener_cuota_mensual_total
 
 class TestCalculos(unittest.TestCase):
 
@@ -19,12 +19,41 @@ class TestCalculos(unittest.TestCase):
                                                                                              aporte_inicial=aporte_inicial, 
                                                                                              tasa_interes_anual=tasa_interes_anual)
 
-        self.assertAlmostEqual(cuota_calculada, cuota_esperada, places=6)
-        self.assertAlmostEqual(costo_adm_calculado, costo_adm_esperado, places=6)
-        self.assertAlmostEqual(cuota_balon_calculado, cuota_balon, places=6)
+        self.assertAlmostEqual(cuota_calculada, cuota_esperada, places=2)
+        self.assertAlmostEqual(costo_adm_calculado, costo_adm_esperado, places=2)
+        self.assertAlmostEqual(cuota_balon_calculado, cuota_balon, places=2)
+
+        # 2do Caso de prueba 12  meses
+        monto = 45000  
+        plazo = 12  # en meses
+        aporte_inicial = 3150 
+        tasa_interes_anual = 16 
+
+        cuota_total_esperada = 3796.05
+
+        cuota_mensual_total = obtener_cuota_mensual_total(monto,
+                                                        plazo,
+                                                        aporte_inicial=aporte_inicial, 
+                                                        tasa_interes_anual=tasa_interes_anual)
+        self.assertAlmostEqual(cuota_mensual_total, cuota_total_esperada, places=2)
+
+        # #er Caso de prueba 12  meses
+        monto = 990  
+        plazo = 12  # en meses
+        aporte_inicial = 69.30 # 7%
+        tasa_interes_anual = 16 
+
+        cuota_total_esperada = 83.51
+
+        cuota_mensual_total = obtener_cuota_mensual_total(monto,
+                                                        plazo,
+                                                        aporte_inicial=aporte_inicial, 
+                                                        tasa_interes_anual=tasa_interes_anual)
+        self.assertAlmostEqual(cuota_mensual_total, cuota_total_esperada, places=2)
+
 
     def test_calcular_cuota_mensual_24_meses(self):
-        # Caso de prueba 24  meses
+        # 1er Caso de prueba 24  meses
         monto = 11000  
         plazo = 24  # en meses
         aporte_inicial = None 
@@ -39,11 +68,11 @@ class TestCalculos(unittest.TestCase):
                                                                                              aporte_inicial=aporte_inicial, 
                                                                                              tasa_interes_anual=tasa_interes_anual)
 
-        self.assertAlmostEqual(cuota_calculada, cuota_esperada, places=6)
-        self.assertAlmostEqual(costo_adm_calculado, costo_adm_esperado, places=6)
-        self.assertAlmostEqual(cuota_balon_calculado, cuota_balon, places=6)
+        self.assertAlmostEqual(cuota_calculada, cuota_esperada, places=2)
+        self.assertAlmostEqual(costo_adm_calculado, costo_adm_esperado, places=2)
+        self.assertAlmostEqual(cuota_balon_calculado, cuota_balon, places=2)
 
-                # Caso de prueba 24  meses
+        # 2do Caso de prueba 24  meses
         monto = 30000  
         plazo = 24  # en meses
         aporte_inicial = None 
@@ -58,10 +87,84 @@ class TestCalculos(unittest.TestCase):
                                                                                              aporte_inicial=aporte_inicial, 
                                                                                              tasa_interes_anual=tasa_interes_anual)
 
-        self.assertAlmostEqual(cuota_calculada, cuota_esperada, places=6)
-        self.assertAlmostEqual(costo_adm_calculado, costo_adm_esperado, places=6)
-        self.assertAlmostEqual(cuota_balon_calculado, cuota_balon, places=6)
+        self.assertAlmostEqual(cuota_calculada, cuota_esperada, places=2)
+        self.assertAlmostEqual(costo_adm_calculado, costo_adm_esperado, places=2)
+        self.assertAlmostEqual(cuota_balon_calculado, cuota_balon, places=2)
 
+        # 3er Caso de prueba 24  meses
+        monto = 11000  
+        plazo = 24  # en meses
+        aporte_inicial = 550 
+        tasa_interes_anual = 16 
+
+        cuota_total_esperada = 516.01
+
+        cuota_mensual_total = obtener_cuota_mensual_total(monto,
+                                                        plazo,
+                                                        aporte_inicial=aporte_inicial, 
+                                                        tasa_interes_anual=tasa_interes_anual)
+        self.assertAlmostEqual(cuota_mensual_total, cuota_total_esperada, places=2)
+
+        # 4to Caso de prueba 24  meses
+        monto = 11000  
+        plazo = 24  # en meses
+        aporte_inicial = 154 
+        tasa_interes_anual = 16 
+
+        cuota_total_esperada = 535.39
+
+        cuota_mensual_total = obtener_cuota_mensual_total(monto,
+                                                        plazo,
+                                                        aporte_inicial=aporte_inicial, 
+                                                        tasa_interes_anual=tasa_interes_anual)
+        self.assertAlmostEqual(cuota_mensual_total, cuota_total_esperada, places=2)
+
+
+    def test_calcular_cuota_mensual_36_meses(self):
+        # Caso de prueba 36 meses
+        monto = 11000  
+        plazo = 36  # en meses
+        aporte_inicial = 110 
+        tasa_interes_anual = 16 
+
+        cuota_total_esperada = 388.719
+
+        cuota_mensual_total = obtener_cuota_mensual_total(monto,
+                                                        plazo,
+                                                        aporte_inicial=aporte_inicial, 
+                                                        tasa_interes_anual=tasa_interes_anual)
+
+        self.assertAlmostEqual(cuota_mensual_total, cuota_total_esperada, places=2)
+
+        # Caso de prueba 36 meses
+        monto = 11000  
+        plazo = 36  # en meses
+        aporte_inicial = 2200 
+        tasa_interes_anual = 16 
+
+        cuota_total_esperada = 315.2411
+
+        cuota_mensual_total = obtener_cuota_mensual_total(monto,
+                                                        plazo,
+                                                        aporte_inicial=aporte_inicial, 
+                                                        tasa_interes_anual=tasa_interes_anual)
+
+        self.assertAlmostEqual(cuota_mensual_total, cuota_total_esperada, places=2)
+
+        # Caso de prueba 36 meses
+        monto = 11000  
+        plazo = 36  # en meses
+        aporte_inicial = 1650 
+        tasa_interes_anual = 16 
+
+        cuota_total_esperada = 334.5775
+
+        cuota_mensual_total = obtener_cuota_mensual_total(monto,
+                                                        plazo,
+                                                        aporte_inicial=aporte_inicial, 
+                                                        tasa_interes_anual=tasa_interes_anual)
+
+        self.assertAlmostEqual(cuota_mensual_total, cuota_total_esperada, places=2)
 
     def test_calcular_cuota_mensual_48_meses(self):
         # Caso de prueba 48 meses
@@ -72,12 +175,12 @@ class TestCalculos(unittest.TestCase):
 
         cuota_total_esperada = 287.18
 
-        cuota_calculada, costo_adm_calculado, cuota_balon_calculado = calcular_cuota_mensual(monto,
-                                                                                             plazo,
-                                                                                             aporte_inicial=aporte_inicial, 
-                                                                                             tasa_interes_anual=tasa_interes_anual)
+        cuota_mensual_total = obtener_cuota_mensual_total(monto,
+                                                        plazo,
+                                                        aporte_inicial=aporte_inicial, 
+                                                        tasa_interes_anual=tasa_interes_anual)
 
-        self.assertAlmostEqual(cuota_calculada+costo_adm_calculado+cuota_balon_calculado, cuota_total_esperada, places=6)
+        self.assertAlmostEqual(cuota_mensual_total, cuota_total_esperada, places=2)
 
 if __name__ == '__main__':
     unittest.main()

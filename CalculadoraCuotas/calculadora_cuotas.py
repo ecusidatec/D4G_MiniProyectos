@@ -21,6 +21,16 @@ def calcular_cuota_mensual(monto, plazo, tasa_interes_anual=16, cuota_balon_porc
         # Si la tasa de interés es 0%, la fórmula del pago mensual es simplemente el préstamo dividido entre el número de meses
         cuota_mensual = monto_prestamo / plazo
 
-    return round(cuota_mensual, 2), \
-        round((monto*(tasa_seguro_anual/100)/12), 2), \
-        round((tasa_interes_mensual*cuota_balon),2)
+    return cuota_mensual, \
+        (monto*(tasa_seguro_anual/100)/12), \
+        (tasa_interes_mensual*cuota_balon)
+
+def obtener_cuota_mensual_total(monto, plazo, tasa_interes_anual=16, cuota_balon_porcentaje=1, \
+                           aporte_inicial=None, aporte_inicial_porcentaje=10, \
+                            seguro_porcentaje=0.75):
+    
+    cuota_calculada, costo_adm_calculado, cuota_balon_calculado = calcular_cuota_mensual(monto, plazo, tasa_interes_anual, cuota_balon_porcentaje, \
+                           aporte_inicial, aporte_inicial_porcentaje, \
+                            seguro_porcentaje)
+    
+    return round(cuota_calculada + costo_adm_calculado + cuota_balon_calculado, 2)
